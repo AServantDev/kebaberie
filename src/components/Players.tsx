@@ -1,35 +1,40 @@
 import { Flex, Heading, VStack } from '@chakra-ui/react';
 
 import { Card } from './Card';
+import { usePlayer } from './context/PlayerContext';
 
 export const Players = (): JSX.Element => {
+  // const [players, setPlayers] = useState<Player[]>([]);
+  const players = usePlayer();
+  const displayPlayers = () => {
+    return players?.map((player) => {
+      return (
+        <Card
+          key={player.name}
+          image={player.image}
+          name={player.name}
+          meta={player.meta}
+          twitter={player.twitter}
+          twitch={player.twitch}
+        />
+      );
+    });
+  };
+
+  // useEffect(() => {
+  //   axios.get<{ players: Player[] }>(baseUrl + "/players").then((response) => {
+  //     setPlayers(response.data.players);
+  //     console.log(response.data);
+  //   });
+  // }, []);
+
   return (
     <VStack w="full">
       <Heading as="h2" size="xl">
         Découvrez nos maitres Kébabiers
       </Heading>
       <Flex justify="space-around" w="full" wrap="wrap">
-        <Card
-          image="orthou.png"
-          name="STO_Ortou"
-          meta="La Salade"
-          twitter="https://twitter.com/STO_Ortou"
-          twitch="https://www.twitch.tv/ortougatza"
-        />
-        <Card
-          image="Zag.jpg"
-          name="MrZagreus"
-          meta="La Tomate"
-          twitter="https://twitter.com/MrZagreus"
-          twitch="https://www.twitch.tv/mrzagreus"
-        />
-        <Card
-          image="astrus.jpg"
-          name="STO_Astrus"
-          meta="L'Oignon"
-          twitter="https://twitter.com/STO_Astrus"
-          twitch="https://www.twitch.tv/astrus9K"
-        />
+        {displayPlayers()}
       </Flex>
     </VStack>
   );
