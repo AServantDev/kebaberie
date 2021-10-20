@@ -1,7 +1,7 @@
 import React from 'react';
 import { FiChevronDown } from 'react-icons/fi';
 
-import { Box, Button, HStack, Menu, MenuButton, MenuItem, MenuList } from '@chakra-ui/react';
+import { Box, Button, HStack, Menu, MenuButton, MenuList } from '@chakra-ui/react';
 
 import { NavBarItem } from './NavBarItem';
 
