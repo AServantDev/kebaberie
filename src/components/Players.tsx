@@ -4,7 +4,6 @@ import { Card } from './Card';
 import { usePlayer } from './context/PlayerContext';
 
 export const Players = (): JSX.Element => {
-  // const [players, setPlayers] = useState<Player[]>([]);
   const players = usePlayer();
   const displayPlayers = () => {
     return players?.map((player) => {
@@ -20,13 +19,6 @@ export const Players = (): JSX.Element => {
       );
     });
   };
-
-  // useEffect(() => {
-  //   axios.get<{ players: Player[] }>(baseUrl + "/players").then((response) => {
-  //     setPlayers(response.data.players);
-  //     console.log(response.data);
-  //   });
-  // }, []);
 
   return (
     <VStack w="full">

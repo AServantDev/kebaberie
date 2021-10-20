@@ -15,6 +15,7 @@ interface Player {
   description: string;
   key: string;
   players: [];
+  games: string[];
 }
 
 type WithChildren<T = {}> = T & { children: JSX.Element };

@@ -1,9 +1,10 @@
 import ReactDom from 'react-dom';
-import { BrowserRouter as Router, Route } from 'react-router-dom';
+import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 
 import { ChakraProvider, extendTheme, ThemeConfig } from '@chakra-ui/react';
 
 import { PlayersProvider } from './components/context/PlayerContext';
+import { GamePage } from './components/GamePage';
 import { Layout } from './components/Layout';
 import { Players } from './components/Players';
 
@@ -22,9 +23,14 @@ const App = () => (
       <Router>
         <div>
           <Layout>
-            <Route exact path="/players">
-              <Players />
-            </Route>
+            <Switch>
+              <Route path="/players">
+                <Players />
+              </Route>
+              <Route path={["/game/smash", "/game/mh"]}>
+                <GamePage />
+              </Route>
+            </Switch>
           </Layout>
         </div>
       </Router>
