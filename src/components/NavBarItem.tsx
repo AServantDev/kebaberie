@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 import { HStack, Text } from '@chakra-ui/react';
 
 interface Props {
-  text: string;
+  text?: string;
   to: string;
 }
 export const NavBarItem = ({ text, to }: Props): JSX.Element => {
@@ -18,10 +18,9 @@ export const NavBarItem = ({ text, to }: Props): JSX.Element => {
       _hover={{ bg: "gray.700", textDecoration: "underline" }}
       cursor="pointer"
       w="full"
+      fontSize={{ base: "10px", md: "14px", lg: "22px" }}
     >
-      <Text fontSize="md" _hover={{ textDecoration: "underline" }}>
-        {text}
-      </Text>
+      <Text _hover={{ textDecoration: "underline" }}>{text}</Text>
     </HStack>
   );
 };

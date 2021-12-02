@@ -1,10 +1,10 @@
 import React from 'react';
 import { useLocation } from 'react-router-dom';
 
-import { HStack, VStack } from '@chakra-ui/react';
+import { Box, HStack, StackDivider, VStack } from '@chakra-ui/react';
 
-import { Card } from './Card';
 import { usePlayer } from './context/PlayerContext';
+import { GamerCard } from './GamerCard';
 
 export const GamePage = (): JSX.Element => {
   const location = useLocation().pathname.split("/");
@@ -13,19 +13,27 @@ export const GamePage = (): JSX.Element => {
     return players
       .filter((player) => player.games.includes(location[2]))
       .map((filteredPlayer) => {
+        console.log(filteredPlayer.twitter?.split("/")[3]);
         return (
-          <HStack>
-            <Card
-              key={filteredPlayer.name}
-              image={filteredPlayer.image}
-              name={filteredPlayer.name}
-              meta={filteredPlayer.meta}
-              twitter={filteredPlayer.twitter}
-              twitch={filteredPlayer.twitch}
-            />
-          </HStack>
+          <GamerCard
+            key={filteredPlayer.name}
+            avatar={filteredPlayer.avatar}
+            name={filteredPlayer.name}
+            title={filteredPlayer.title}
+            twitter={filteredPlayer.twitter}
+            twitch={filteredPlayer.twitch}
+            description={filteredPlayer.description}
+          />
         );
       });
   };
-  return <VStack>{displayPlayers()}</VStack>;
+  return (
+    <VStack
+      w="90%"
+      align="stretch"
+      divider={<StackDivider borderColor="gray.200" />}
+    >
+      {displayPlayers()}
+    </VStack>
+  );
 };

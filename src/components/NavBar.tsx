@@ -1,11 +1,14 @@
 import React from 'react';
 import { FiChevronDown } from 'react-icons/fi';
 
-import { Box, Button, HStack, Menu, MenuButton, MenuList } from '@chakra-ui/react';
+import {
+    Box, Button, HStack, Menu, MenuButton, MenuList, useBreakpointValue
+} from '@chakra-ui/react';
 
 import { NavBarItem } from './NavBarItem';
 
 export const NavBar = (): JSX.Element => {
+  const text = useBreakpointValue({ base: "lol", sm: "players" });
   return (
     <HStack
       h="xs"
@@ -19,7 +22,7 @@ export const NavBar = (): JSX.Element => {
         <NavBarItem text="Home" to="/" />
       </Box>
       <Box>
-        <NavBarItem text="Les joueurs" to="/players" />
+        <NavBarItem text={text} to="/players" />
       </Box>
 
       <Box>

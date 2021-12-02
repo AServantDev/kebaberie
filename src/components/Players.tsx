@@ -10,9 +10,9 @@ export const Players = (): JSX.Element => {
       return (
         <Card
           key={player.name}
-          image={player.image}
+          avatar={player.avatar}
           name={player.name}
-          meta={player.meta}
+          title={player.title}
           twitter={player.twitter}
           twitch={player.twitch}
         />
