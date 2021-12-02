@@ -10,12 +10,13 @@ interface Player {
   twitch?: string;
   twitter: string;
   link?: string;
-  meta: string;
-  image: string;
+  title: string;
+  avatar: string;
   description: string;
   key: string;
   players: [];
   games: string[];
+  id: number;
 }
 
 type WithChildren<T = {}> = T & { children: JSX.Element };

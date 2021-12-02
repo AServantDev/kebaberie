@@ -1,24 +1,29 @@
 import React from 'react';
 import { FiTwitch, FiTwitter } from 'react-icons/fi';
 
-import { Box, Heading, HStack, Icon, Image, Text, VStack } from '@chakra-ui/react';
+import { Box, Heading, HStack, Icon, Image, Text } from '@chakra-ui/react';
+import { AdvancedImage } from '@cloudinary/react';
+
+import { useCloud } from './context/CloudinaryContext';
 
 interface Props {
   name: string;
   twitch?: string;
   twitter: string;
   link?: string;
-  meta: string;
-  image: string;
+  title: string;
+  avatar: string;
 }
 
 export const Card = ({
   name,
   twitter,
-  meta,
-  image,
+  title,
+  avatar,
   twitch,
 }: Props): JSX.Element => {
+  const cld = useCloud();
+  const myImage = cld.image("sample");
   return (
     <Box
       w="sm"
@@ -26,25 +31,30 @@ export const Card = ({
       borderRadius="lg"
       bg="gray.700"
       overflow="hidden"
+      marginBottom="2em"
     >
-      <Image src={image} w="full" />
+      <AdvancedImage as={Image} cldImg={myImage} w="full" />
       <Box p={4}>
         <Heading>{name}</Heading>
-        <Text color="gray.500">{meta}</Text>
-        <VStack>
-          <HStack>
-            <Icon as={FiTwitter} />
-            <Text as={"a"} href={twitter}>
-              {name}
-            </Text>
-          </HStack>
-          <HStack>
-            <Icon as={FiTwitch} />
-            <Text as={"a"} href={twitch}>
-              {name}
-            </Text>
-          </HStack>
-        </VStack>
+        <Text color="gray.500">{title}</Text>
+        <HStack w="100%">
+          {twitter !== null && (
+            <HStack>
+              <Icon as={FiTwitter} />
+              <Text as={"a"} href={twitter}>
+                {name}
+              </Text>
+            </HStack>
+          )}
+          {twitch !== null && (
+            <HStack>
+              <Icon as={FiTwitch} />
+              <Text as={"a"} href={twitch}>
+                {name}
+              </Text>
+            </HStack>
+          )}
+        </HStack>
       </Box>
     </Box>
   );
