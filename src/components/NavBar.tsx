@@ -8,7 +8,6 @@ import {
 import { NavBarItem } from './NavBarItem';
 
 export const NavBar = (): JSX.Element => {
-  const text = useBreakpointValue({ base: "lol", sm: "players" });
   return (
     <HStack
       h="xs"
@@ -22,7 +21,7 @@ export const NavBar = (): JSX.Element => {
         <NavBarItem text="Home" to="/" />
       </Box>
       <Box>
-        <NavBarItem text={text} to="/players" />
+        <NavBarItem text="Les joueurs" to="/players" />
       </Box>
 
       <Box>
